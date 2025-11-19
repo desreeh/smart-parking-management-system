@@ -1,0 +1,50 @@
+// ParkingLot.h
+#include<iostream>
+#define PARKINGLOT_H
+
+#include "ParkingSlot.h"
+#include <vector>
+#include <iostream>
+
+class ParkingLot {
+private:
+    vector<ParkingSlot> slots;
+public:
+    ParkingLot(int totalSlots) {
+        for (int i = 1; i <= totalSlots; i++) {
+            slots.push_back(ParkingSlot(i));
+        }
+    }
+
+    bool reserveParkingSlot(int slotNumber, Vehicle* vehicle) {
+        if (slotNumber >= 1 && slotNumber <= slots.size()) {
+            ParkingSlot& slot = slots[slotNumber - 1];
+            if (slot.isAvailable()) {
+                slot.occupySlot(vehicle);
+                cout << "Parking slot " << slotNumber << " reserved for vehicle " << vehicle->getLicensePlate() << endl;
+                return true;
+            } else {
+                cout << "Slot " << slotNumber << " is already occupied!" << endl;
+            }
+        } else {
+            cout << "Invalid slot number!" << endl;
+        }
+        return false;
+    }
+
+    void displayParkingLotDetails() const {
+        for (const auto& slot : slots) {
+            slot.displaySlotDetails();
+        }
+    }
+
+    double calculateTotalRevenue(int hours) const {
+        double total = 0;
+        for (const auto& slot : slots) {
+            if (slot.isAvailable()) continue;
+            total += slot.getVehicle()->calculateParkingCost(hours);
+        }
+        return total;
+    }
+};
+
