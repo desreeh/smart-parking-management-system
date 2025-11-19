@@ -1,0 +1,30 @@
+// ElectricVehicle.h
+#include<iostream>
+#define ELECTRICVEHICLE_H
+
+#include "Vehicle.h"
+
+class ElectricVehicle : public Vehicle {
+private:
+    double batteryLevel;  // Battery level as a percentage (0 to 100)
+public:
+    ElectricVehicle(string plate, double battery) 
+        : Vehicle(plate, 3.0), batteryLevel(battery) {}  // EVs have a higher base rate of $3/hour
+
+    double calculateParkingCost(int hours) const override {
+        return hours * hourlyRate;
+    }
+
+    void charge(double amount) {
+        batteryLevel += amount;
+        if (batteryLevel > 100) batteryLevel = 100;
+    }
+
+    void displayDetails() const override {
+        cout << "Electric Vehicle - ";
+        Vehicle::displayDetails();
+        cout << "Battery Level: " << batteryLevel << "%" << endl;
+    }
+};
+
+
