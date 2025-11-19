@@ -1,0 +1,19 @@
+// Motorcycle.h
+#include<iostream>
+#define MOTORCYCLE_H
+
+#include "Vehicle.h"
+
+class Motorcycle : public Vehicle {
+public:
+    Motorcycle(string plate) : Vehicle(plate, 1.0) {}  
+
+    double calculateParkingCost(int hours) const override {
+        return hours * hourlyRate;  
+    }
+
+    void displayDetails() const override {
+        cout << "Motorcycle - ";
+        Vehicle::displayDetails();
+    }
+}
