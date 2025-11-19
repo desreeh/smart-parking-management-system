@@ -1,1 +1,2 @@
 # smart-parking-management-system
+The Smart Parking Management System (SPMS) is a software solution designed to optimize parking space usage, simplify parking management, and generate accurate billing for vehicles using a parking lot. Below is a more detailed explanation of how the system works, including its features, architecture, and how each component interacts with one another.
