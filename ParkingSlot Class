@@ -1,0 +1,45 @@
+// ParkingSlot.h
+#include<iostream>
+#define PARKINGSLOT_H
+
+#include "Vehicle.h"
+#include <iostream>
+
+class ParkingSlot {
+private:
+    int slotNumber;
+    Vehicle* vehicle;
+    bool isOccupied;
+public:
+    ParkingSlot(int number) : slotNumber(number), vehicle(nullptr), isOccupied(false) {}
+
+    bool isAvailable() const {
+        return !isOccupied;
+    }
+
+    void occupySlot(Vehicle* v) {
+        if (isAvailable()) {
+            vehicle = v;
+            isOccupied = true;
+        } else {
+            cout << "Slot " << slotNumber << " is already occupied!" << endl;
+        }
+    }
+
+    void vacateSlot() {
+        if (isOccupied) {
+            vehicle = nullptr;
+            isOccupied = false;
+        }
+    }
+
+    void displaySlotDetails() const {
+        cout << "Parking Slot " << slotNumber << " - ";
+        if (isOccupied) {
+            vehicle->displayDetails();
+        } else {
+            cout << "Empty" << endl;
+        }
+    }
+};
+
