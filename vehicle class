@@ -1,0 +1,27 @@
+// Vehicle.h
+#include <iostream>
+#define VEHICLE_H
+
+#include <string>
+using namespace std;
+
+class Vehicle {
+protected:
+    string licensePlate;
+    double hourlyRate;
+public:
+    Vehicle(string plate, double rate) : licensePlate(plate), hourlyRate(rate) {}
+    virtual ~Vehicle() {}
+
+    string getLicensePlate() const {
+        return licensePlate;
+    }
+
+    virtual double calculateParkingCost(int hours) const {
+        return hours * hourlyRate;
+    }
+
+    virtual void displayDetails() const {
+        cout << "License Plate: " << licensePlate << ", Rate per Hour: $" << hourlyRate << endl;
+    }
+};
