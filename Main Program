@@ -1,0 +1,38 @@
+// main.cpp
+#include <iostream>
+#include "Vehicle.h"
+#include "Car.h"
+#include "Motorcycle.h"
+#include "ElectricVehicle.h"
+#include "ParkingSlot.h"
+#include "ParkingLot.h"
+
+using namespace std;
+
+int main() {
+    // Create a parking lot with 5 slots
+    ParkingLot lot(5);
+
+    // Create vehicles
+    Vehicle* car = new Car("ABC123");
+    Vehicle* motorcycle = new Motorcycle("MOT001");
+    Vehicle* ev = new ElectricVehicle("EV001", 50);  // 50% battery
+
+    // Reserve some slots
+    lot.reserveParkingSlot(1, car);
+    lot.reserveParkingSlot(2, motorcycle);
+    lot.reserveParkingSlot(3, ev);
+
+    // Display parking lot details
+    lot.displayParkingLotDetails();
+
+    // Calculate revenue for 3 hours of parking
+    cout << "Total revenue for 3 hours: $" << lot.calculateTotalRevenue(3) << endl;
+
+    // Cleanup
+    delete car;
+    delete motorcycle;
+    delete ev;
+
+    return 0;
+}
